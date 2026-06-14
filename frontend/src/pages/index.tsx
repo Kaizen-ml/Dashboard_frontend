@@ -7,7 +7,7 @@ import SavingsReportsSection from "@/components/SavingsReportsSection";
 import WorkloadsSection from "@/components/WorkloadsSection";
 
 export default function App() {
-  const { data, loading, error } = useDashboardData();
+  const { data, loading } = useDashboardData();
   const [activeTab, setActiveTab] = useState<string>("overview");
   const [localTime, setLocalTime] = useState<string>("2026-06-14 GMT");
 
@@ -52,45 +52,6 @@ export default function App() {
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         `}} />
         <span style={{ fontSize: "0.9rem", color: "#475569", fontWeight: 500 }}>Initializing Live Optimization Telemetry...</span>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div style={{
-        display: "flex",
-        height: "100vh",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: "12px",
-        backgroundColor: "#fef2f2",
-        color: "#b91c1c",
-        padding: "24px",
-        fontFamily: "var(--font-sans)",
-        textAlign: "center"
-      }}>
-        <svg style={{ width: "48px", height: "48px" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-        <h2 style={{ fontSize: "1.2rem", fontWeight: 700 }}>Connection Offline</h2>
-        <p style={{ fontSize: "0.85rem", color: "#7f1d1d", maxWidth: "400px" }}>{error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          style={{
-            marginTop: "12px",
-            backgroundColor: "#ef4444",
-            color: "white",
-            border: "none",
-            padding: "8px 16px",
-            borderRadius: "6px",
-            fontWeight: 600,
-            fontSize: "0.8rem"
-          }}
-        >
-          Retry Connection
-        </button>
       </div>
     );
   }
