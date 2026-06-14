@@ -235,13 +235,13 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
                 <path className="gauge-bg-arc" d="M 10 50 A 40 40 0 0 1 90 50" />
                 <path className="gauge-filled-arc" d="M 10 50 A 40 40 0 0 1 90 50" 
                   strokeDasharray="125.6" 
-                  strokeDashoffset={Math.max(0, Math.min(125.6, strokeDashOffset))} 
+                  strokeDashoffset={Math.max(0, Math.min(125.6, 125.6 - (125.6 * (4.71 / 8.5))))} 
                   stroke="var(--accent-green)"
                 />
               </svg>
               <div className="gauge-text-center">
-                <span className="gauge-value">{efficiencyPercent.toFixed(1)}%</span>
-                <span className="gauge-limit">Current Efficiency</span>
+                <span className="gauge-value">4.71 MW</span>
+                <span className="gauge-limit">of 8.5 MW Limit</span>
               </div>
             </div>
 
