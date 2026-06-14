@@ -47,7 +47,8 @@ export default function App() {
           borderRadius: "50%",
           animation: "spin 1s linear infinite"
         }} />
-        <style dangerouslySetInnerHTML={{__html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         `}} />
         <span style={{ fontSize: "0.9rem", color: "#475569", fontWeight: 500 }}>Initializing Live Optimization Telemetry...</span>
@@ -75,8 +76,8 @@ export default function App() {
         </svg>
         <h2 style={{ fontSize: "1.2rem", fontWeight: 700 }}>Connection Offline</h2>
         <p style={{ fontSize: "0.85rem", color: "#7f1d1d", maxWidth: "400px" }}>{error}</p>
-        <button 
-          onClick={() => window.location.reload()} 
+        <button
+          onClick={() => window.location.reload()}
           style={{
             marginTop: "12px",
             backgroundColor: "#ef4444",
@@ -142,7 +143,7 @@ export default function App() {
           <nav>
             <ul className="menu-list">
               <li>
-                <button 
+                <button
                   className={`menu-item ${activeTab === "overview" ? "active" : ""}`}
                   onClick={() => setActiveTab("overview")}
                 >
@@ -156,7 +157,7 @@ export default function App() {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className={`menu-item ${activeTab === "workloads" ? "active" : ""}`}
                   onClick={() => setActiveTab("workloads")}
                 >
@@ -170,7 +171,7 @@ export default function App() {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className={`menu-item ${activeTab === "facility" ? "active" : ""}`}
                   onClick={() => setActiveTab("facility")}
                 >
@@ -184,7 +185,7 @@ export default function App() {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className={`menu-item ${activeTab === "grid" ? "active" : ""}`}
                   onClick={() => setActiveTab("grid")}
                 >
@@ -198,7 +199,7 @@ export default function App() {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   className={`menu-item ${activeTab === "savings" ? "active" : ""}`}
                   onClick={() => setActiveTab("savings")}
                 >
