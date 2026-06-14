@@ -10,7 +10,7 @@ interface OverviewSectionProps {
 export default function OverviewSection({ overview, grid, facility }: OverviewSectionProps) {
   const gridList = grid || [];
   const [autopilot, setAutopilot] = useState(true);
-  
+
   // Simulation Modal States
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [simulationAction, setSimulationAction] = useState("");
@@ -75,7 +75,7 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
   const getChartCoordinates = (dataList: any[], key: string, minVal: number, maxVal: number) => {
     if (!dataList || dataList.length === 0) return "";
     const widthInterval = (svgWidth - padding * 2) / (dataList.length - 1);
-    
+
     return dataList.map((item, idx) => {
       const x = padding + idx * widthInterval;
       const val = item[key] ?? 0;
@@ -190,7 +190,7 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
             <h3>ML Cooling Optimization</h3>
             <span className={`panel-badge ${strategy === "AIR" ? "blue" : "purple"}`}>Strategy Recommended</span>
           </div>
-          
+
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", padding: "12px", background: "var(--bg-app)", borderRadius: "var(--border-radius-md)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid var(--border-main)", paddingBottom: "6px" }}>
               <span style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>Recommended Strategy</span>
@@ -233,15 +233,15 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
             <div className="gauge-svg-container">
               <svg className="gauge-svg" width="100%" height="100%" viewBox="0 0 100 50">
                 <path className="gauge-bg-arc" d="M 10 50 A 40 40 0 0 1 90 50" />
-                <path className="gauge-filled-arc" d="M 10 50 A 40 40 0 0 1 90 50" 
-                  strokeDasharray="125.6" 
-                  strokeDashoffset={Math.max(0, Math.min(125.6, 125.6 - (125.6 * (4.71 / 8.5))))} 
+                <path className="gauge-filled-arc" d="M 10 50 A 40 40 0 0 1 90 50"
+                  strokeDasharray="125.6"
+                  strokeDashoffset={Math.max(0, Math.min(125.6, strokeDashOffset))}
                   stroke="var(--accent-green)"
                 />
               </svg>
               <div className="gauge-text-center">
-                <span className="gauge-value">4.71 MW</span>
-                <span className="gauge-limit">of 8.5 MW Limit</span>
+                <span className="gauge-value">{efficiencyPercent.toFixed(1)}%</span>
+                <span className="gauge-limit">Current Efficiency</span>
               </div>
             </div>
 
@@ -306,18 +306,18 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
               </div>
             </div>
           </div>
-          
+
           <div className="chart-svg-container">
             {gridList.length > 0 ? (
               <svg width="100%" height="100%" viewBox={`0 0 ${svgWidth} ${svgHeight}`} preserveAspectRatio="none">
                 <line x1={padding} y1={padding} x2={svgWidth - padding} y2={padding} stroke="#f1f5f9" strokeWidth={1} />
-                <line x1={padding} y1={svgHeight/2} x2={svgWidth - padding} y2={svgHeight/2} stroke="#f1f5f9" strokeWidth={1} />
+                <line x1={padding} y1={svgHeight / 2} x2={svgWidth - padding} y2={svgHeight / 2} stroke="#f1f5f9" strokeWidth={1} />
                 <line x1={padding} y1={svgHeight - padding} x2={svgWidth - padding} y2={svgHeight - padding} stroke="#f1f5f9" strokeWidth={1} />
-                
+
                 {carbonPoints && <polyline fill="none" stroke="var(--accent-green)" strokeWidth={2} points={carbonPoints} />}
                 {pricePoints && <polyline fill="none" stroke="var(--accent-amber)" strokeWidth={2} points={pricePoints} />}
                 {loadPoints && <polyline fill="none" stroke="var(--accent-blue)" strokeWidth={2} points={loadPoints} />}
-                
+
                 {gridList.map((item, idx) => {
                   const xInterval = (svgWidth - padding * 2) / (gridList.length - 1);
                   const x = padding + idx * xInterval;
@@ -353,12 +353,12 @@ export default function OverviewSection({ overview, grid, facility }: OverviewSe
             <h3>Recent Activity</h3>
             <span className="logs-header-btn">Core Logs</span>
           </div>
-          
+
           <div className="timeline-list">
             {localLogs.length > 0 ? (
               localLogs.map((log: any, idx: number) => {
                 const date = new Date(log.timestamp);
-                const timeString = isNaN(date.getTime()) ? "Just now" : date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const timeString = isNaN(date.getTime()) ? "Just now" : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 let color = "blue";
                 if (log.message.includes("alert") || log.message.includes("high") || log.message.includes("price")) color = "amber";
                 if (log.message.includes("recommendation") || log.message.includes("AI")) color = "purple";

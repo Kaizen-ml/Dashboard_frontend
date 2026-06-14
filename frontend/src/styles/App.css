@@ -655,7 +655,6 @@ input:checked + .slider:before {
 }
 
 .gauge-svg {
-  transform: rotate(-180deg);
   transform-origin: 50% 50%;
 }
 
